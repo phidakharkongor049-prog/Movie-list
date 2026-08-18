@@ -11,7 +11,17 @@ conn = psycopg2.connect(
 
 cursor = conn.cursor()
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS movies (
+id SERIAL PRIMARY KEY,
+title TEXT NOT NULL,
+genre TEXT,
+rating TEXT,
+status TEXT
+)
+""")
 
+conn.commit()
 # ---------------- HOME / MOVIE LIST ----------------
 
 @app.route("/")
